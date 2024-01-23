@@ -22,7 +22,7 @@ class UserController {
   static async createUser(req: Request, res: Response) {
     try {
       const { nome, sobrenome, email, idade } = req.body
-      await User.create({nome, sobrenome, email, idade})
+      await User.create({ nome, sobrenome, email, idade })
       res.redirect('/users')
     } catch (error) {
       res.status(500).json(error)
