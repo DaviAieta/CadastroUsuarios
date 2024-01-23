@@ -9,17 +9,26 @@ const User = db.define('usuarios', {
           allowNull: false
      },
      nome: {
-      type: Sequelize.TEXT,
+      type: Sequelize.STRING,
      },
      sobrenome: {
-      type: Sequelize.TEXT,
+      type: Sequelize.STRING,
      },
      email: {
-      type: Sequelize.TEXT,
+      type: Sequelize.STRING,
      },
      idade: {
       type: Sequelize.INTEGER,
      },
+     cpf: {
+          type: Sequelize.INTEGER
+     },
+     password: {
+          type: Sequelize.STRING
+     },
+     token: {
+          type: Sequelize.STRING
+     }
 },
 )
 
