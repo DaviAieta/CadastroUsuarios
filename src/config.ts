@@ -8,6 +8,10 @@ const configApp = (app: any): void => {
 
   const handlebars = exphbs.create({
     defaultLayout: 'main',
+    runtimeOptions: {
+      allowProtoPropertiesByDefault: true,
+      allowProtoMethodsByDefault: true,
+    },
   })
 
   app.engine('handlebars', handlebars.engine)

@@ -21,7 +21,7 @@ const User = db.define('usuarios', {
       type: Sequelize.INTEGER,
      },
      cpf: {
-          type: Sequelize.INTEGER
+          type: Sequelize.STRING
      },
      password: {
           type: Sequelize.STRING

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
-import bcrypt from 'bcrypt'
+import * as cryptoUtils from '../utils/crypto.utils'
 import User from '../models/users.models'
 
-class UserController {
+export class UserController {
   static async listUsers(req: Request, res: Response) {
     try {
       const users = await User.findAll()
@@ -23,12 +23,9 @@ class UserController {
   static async createUser(req: Request, res: Response) {
     const { nome, sobrenome, email, idade, cpf, password, passwordConfirm } = req.body
     if (password === passwordConfirm) {
-      const tokenScript = cpf + email + nome
-      const tokenGerado = await bcrypt.hash(tokenScript, 10)
-      const passwordCript = await bcrypt.hash(password, 10)
+      const tokenGerado = await cryptoUtils.generateToken(cpf, nome, email)
+      const passwordCript = await cryptoUtils.hashPassword(password) 
 
-      console.log(tokenGerado, passwordCript)
-      
       try {
         await User.create({
           nome: nome,
@@ -46,5 +43,3 @@ class UserController {
     }
   }
 }
-
-export default UserController
