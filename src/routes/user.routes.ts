@@ -7,11 +7,11 @@ const router = express.Router()
 router.get('/', UserController.listUsers)
 
 // create
-router.get('/new', UserController.createUserForm)
+router.get('/new', UserController.createUser)
 router.post('/new', UserController.createUser)
 
 // delete
-router.get('/delete/:id', UserController.deleteUserForm)
+router.get('/delete/:id', UserController.deleteUser)
 router.post('/delete/:id', UserController.deleteUser)
 
 
