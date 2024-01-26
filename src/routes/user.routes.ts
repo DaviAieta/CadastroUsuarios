@@ -10,4 +10,9 @@ router.get('/', UserController.listUsers)
 router.get('/new', UserController.createUserForm)
 router.post('/new', UserController.createUser)
 
+// delete
+router.get('/delete/:id', UserController.deleteUserForm)
+router.post('/delete/:id', UserController.deleteUser)
+
+
 export default router
