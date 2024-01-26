@@ -2,15 +2,33 @@ import { Request, Response } from 'express'
 import * as cryptoUtils from '../utils/crypto.utils'
 import User from '../models/users.models'
 import { Validator } from '../utils/validator.utils'
+import { Op } from 'sequelize'
 
 export class UserController {
   static async listUsers(req: Request, res: Response) {
-    try {
-      const users = await User.findAll()
-      return res.render('users', { users })
-    } catch (error) {
-      return res.status(500).json({ error: error })
+    const search = req.query.nome
+    const query = '%'+search+'%'
+
+    if(!search){
+      try {
+        const users = await User.findAll()
+        return res.render('users', { users })
+      } catch (error) {
+        return res.status(500).json({ error: error })
+      }
     }
+    
+    else{
+      try{
+        const users = await User.findAll({
+          where: {nome: {[Op.like]: query}}
+        })
+        return res.render('users', { users })
+      }catch (error){
+        return res.status(500).json({ error: error })
+      }
+    }
+
   }
 
   static async createUser(req: Request, res: Response) {
