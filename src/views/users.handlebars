@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">E-mail</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each users}}
+            <tr>
+                <td scope="row">{{ id_user }}</td>
+                <td scope="row">{{ nome }} {{ sobrenome }}</td>
+                <td scope="row">{{ email }}</td>
+                <td scope="row"><a class="btn btn-danger" href="/users/delete/{{ id_user }}">Delete</a></td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
